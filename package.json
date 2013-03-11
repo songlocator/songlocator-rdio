@@ -1,0 +1,22 @@
+{
+  "name": "songlocator-rdio",
+  "version": "0.1.0",
+  "description": "SongLocator resovler for rdio",
+  "main": "songlocator-rdio.js",
+  "dependencies": {
+    "songlocator-base": "~0.1.1",
+    "oauth": "~0.9.10"
+  },
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/songlocator/songlocator-rdio.git"
+  },
+  "homepage": "https://github.com/songlocator/songlocator-rdio",
+  "keywords": ["songlocator", "api", "music", "streaming", "audio", "resolver", "rdio"],
+  "author": {
+      "name": "Andrey Popp",
+      "email": "8mayday@gmail.com",
+      "url": "http://andreypopp.com"
+  },
+  "license": "MIT"
+}

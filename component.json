@@ -1,0 +1,11 @@
+{
+  "name": "songlocator-rdio",
+  "version": "0.1.0",
+  "description": "SongLocator resolver for rdio",
+  "tags": ["songlocator", "api", "music", "streaming", "audio", "resolver", "rdio"],
+  "author": "Andrey Popp <8mayday@gmail.com>",
+  "main": ["./songlocator-rdio.js"],
+  "dependencies": {
+    "songlocator-base": "~0.1.1"
+  }
+}
