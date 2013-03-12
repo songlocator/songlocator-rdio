@@ -68,7 +68,7 @@ class exports.Resolver extends BaseResolver
     this.oauth.post(this.endpoint, oauthToken, oauthTokenSecret, params,
         'application/x-www-form-urlencoded', callbackWrapper)
 
-  search: (qid, query) ->
+  makeSearch: (qid, query, search = true) ->
     this.makeRequest 'search', {query: query, types: 'Track'}, (error, response) =>
       return if error?
       results = for r in response.result.results.slice(0, this.options.maxSearchResults)
@@ -88,4 +88,12 @@ class exports.Resolver extends BaseResolver
           mimetype: undefined
           duration: r.duration
 
+      results = [results[0]] if not search and results.length > 0
       this.results(qid, results)
+
+  search: (qid, query) ->
+    this.makeSearch(qid, query)
+
+  resolve: (qid, title, artist, album) ->
+    query = "#{title or ''} #{artist or ''} #{album or ''}"
+    this.makeSearch(qid, query, false)

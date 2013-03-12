@@ -81,8 +81,11 @@ exports.Resolver = (function(_super) {
     return this.oauth.post(this.endpoint, oauthToken, oauthTokenSecret, params, 'application/x-www-form-urlencoded', callbackWrapper);
   };
 
-  Resolver.prototype.search = function(qid, query) {
+  Resolver.prototype.makeSearch = function(qid, query, search) {
     var _this = this;
+    if (search == null) {
+      search = true;
+    }
     return this.makeRequest('search', {
       query: query,
       types: 'Track'
@@ -113,8 +116,21 @@ exports.Resolver = (function(_super) {
         }
         return _results;
       }).call(_this);
+      if (!search && results.length > 0) {
+        results = [results[0]];
+      }
       return _this.results(qid, results);
     });
+  };
+
+  Resolver.prototype.search = function(qid, query) {
+    return this.makeSearch(qid, query);
+  };
+
+  Resolver.prototype.resolve = function(qid, title, artist, album) {
+    var query;
+    query = "" + (title || '') + " " + (artist || '') + " " + (album || '');
+    return this.makeSearch(qid, query, false);
   };
 
   return Resolver;
